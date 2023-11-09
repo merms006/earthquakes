@@ -11,7 +11,7 @@ from scipy.optimize import curve_fit
 # csv must have at minimum a 'magnitude' and 'time' column
 # use \\ instead of \ in filepath name
 
-df = pd.read_csv('C:\\filepath\\earthquake csv') 
+df = pd.read_csv('C:\\filepath\\earthquake.csv') 
 
 # =================================================== #
 ##### GET TOTAL TIME IN DATAFRAME #####
@@ -118,7 +118,7 @@ y_yr = frequency_yr
 # chart settings
 plt.rc('axes', axisbelow=True) # display 
 plt.yscale("log") # log scale
-plt.title('Magnitude/Frequency Occurrence of Major Earthquakes in the CSZ Since 1923')
+plt.title('TITLE')
 plt.xlabel("Magnitude") # x-axis label
 plt.ylabel("Frequency") # y-axis label
 plt.grid(which = 'major', axis = 'y', linewidth = 0.75) # major axis display
