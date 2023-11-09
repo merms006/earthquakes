@@ -4,14 +4,14 @@ from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy.optimize import curve_fit
-import seaborn as sns
+#import seaborn as sns
 
 # =================================================== #
 ##### IMPORT CSV #####
-# csv must have at minimum a magnitude and time column
+# csv must have at minimum a 'magnitude' and 'time' column
 # use \\ instead of \ in filepath name
 
-df = pd.read_csv('C:\\Users\\elina\\Desktop\\e436b\\eq1950-2023.csv') 
+df = pd.read_csv('C:\\filepath\\earthquake csv') 
 
 # =================================================== #
 ##### GET TOTAL TIME IN DATAFRAME #####
@@ -102,11 +102,9 @@ frequency_yr = calc_freq(ranks, time_yr, [], 0)
 
 # export magnitude/frequencies as csv
 # strongly suggest commenting out code after first export to prevent repetitive exports
-#'''
 dict = {'magnitude': mag_list_unique, 'frequency (yr)': frequency_yr, 'frequency (mo)': frequency_mo, 'frequency (day)': frequency_day}     
 exp = pd.DataFrame(dict)
-exp.to_csv('C:\\Users\\elina\\Desktop\\e436b\\magfreq.csv')
-#'''
+exp.to_csv('C:\\filepath\\magfreq.csv')
 
 # =================================================== #
 ##### MAG/FREQ CHART DISPLAY #####
@@ -145,18 +143,14 @@ popt_y, pcov_y = curve_fit(lambda fx,a,b: a*fx**-b, x, y_yr)
 power_yr = popt_y[0]*x**-popt_y[1]
 #print(power_yr)
 
-# add trendlines, hide as necessary
-plt.plot(x, power_day, color = "black", linewidth = 1, linestyle = "--")
-plt.plot(x, power_mo, color = "black", linewidth = 1, linestyle = "--")
+# add trendlines, hide/unhide as necessary
+#plt.plot(x, power_day, color = "black", linewidth = 1, linestyle = "--")
+#plt.plot(x, power_mo, color = "black", linewidth = 1, linestyle = "--")
 plt.plot(x, power_yr, color = "black", linewidth = 1, linestyle = "--")
 
 # legend, change as necessary
 #plt.legend(['Frequency - Days', 'Frequency - Month', 'Frequency - Year', 'power fit'])
 plt.legend()
-#plt.annotate('R**2', power_yr, xy=(0.05, 0.95), xycoords='axes')
-#plt.annotate("r-squared = {:.3f}".format(r2_score(y_test, y_predicted)), (0, 1))
-#plt.annotate("r-squared = {:.3f}".format(r2_score(y_test, y_predicted)), (0, 1))
-#plt.annotate("r-squared = {:.3f}".format(r2_score(y_test, y_predicted)), (0, 1))
 
 # display
 plt.show()
